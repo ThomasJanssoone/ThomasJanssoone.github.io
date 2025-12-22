@@ -1,181 +1,876 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thomas Janssoone</title>
-  <style>
-    /* Global styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      color: white;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Janssoone — Computational Behavior × AI</title>
+    <meta name="description" content="Research Scientist specializing in multimodal ML, affective computing, and AI interpretability">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #18181b;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --border: #27272a;
+            --gradient-1: #3b82f6;
+            --gradient-2: #8b5cf6;
+            --gradient-3: #06b6d4;
+        }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Header styles */
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    /* Experience and Education sections */
-    section {
-      margin-bottom: 40px;
-    }
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 1000;
+        }
 
-    h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
+        /* Gradient orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-    .experience, .education {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--gradient-1);
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
 
-    .experience-image, .education-image {
-      width: 200px;
-      height: 150px;
-      margin-right: 20px;
-      background-color: #333;
-      /* You can add a placeholder image here */
-    }
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-2);
+            bottom: 10%;
+            left: -100px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
 
-    .experience-content, .education-content {
-      flex: 1;
-    }
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-3);
+            top: 50%;
+            right: 10%;
+            animation: float 18s ease-in-out infinite;
+        }
 
-    .experience-content h3, .education-content h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.05); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(20px, 10px) scale(1.02); }
+        }
 
-    .experience-content p, .education-content p {
-      margin-bottom: 5px;
-    }
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    /* Video section */
-    #video {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
 
-    #video iframe {
-      max-width: 100%;
-      height: 400px;
-    }
+        .logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
 
-    /* Responsive styles */
-    @media (max-width: 768px) {
-      .container {
-        padding: 20px;
-      }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-      .experience, .education {
-        flex-direction: column;
-        text-align: center;
-      }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
 
-      .experience-image, .education-image {
-        width: 100%;
-        height: auto;
-        margin-right: 0;
-        margin-bottom: 20px;
-      }
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
 
-      #video iframe {
-        height: 300px;
-      }
-    }
-  </style>
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card);
+            border-color: var(--text-muted);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-text p:first-of-type::first-letter {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.5rem;
+            float: left;
+            line-height: 1;
+            margin-right: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), var(--gradient-2), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-company {
+            color: var(--accent);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Research Section */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .research-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .research-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-4px);
+        }
+
+        .research-card:hover::before {
+            opacity: 1;
+        }
+
+        .research-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-glow), transparent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .research-card h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .research-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Publications */
+        .pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pub-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .pub-item:hover {
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+        }
+
+        .pub-venue {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: var(--accent-glow);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            height: fit-content;
+        }
+
+        .pub-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .pub-authors {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 8rem 0;
+        }
+
+        .contact-section .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-description {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .contact-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Thomas Janssoone</h1>
-      <p>Building AIs able to assist life on a daily basis</p>
-    </header>
+    <!-- Background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-    <section>
-      <h2>Work Experience</h2>
-      <div class="experience">
-        <div class="experience-image" style="background-image: url('img/et_2.png'); background-size: cover; background-position: center;"></div>
-        <div class="experience-content">
-          <h3>Multimodal AI Applied Researcher, Enchanted Tools</h3>
-          <p>April 2022 - Present</p>
-          <p>Design and implement an End-to-End interaction pipeline for social robots, enabling natural and intuitive interactions in real-life environments.</p>
-          <p>Responsibilities include:</p>
-          <ul>
-            <li>comparing, benchmarking, and deploying on embedded system solutions for Speech To Text (Whisper), BodyPose and Facial Landmark detection, Intent Recognition, Dialog management (Embedded LLM / VLM such as Mixtral, LLama, Phi, Florence,. . . ), Decision making (CoT, ToM), and Global Robot behavior generation (Text To Speech, Voice Cloning, Character Design, Co-Speech Generative Gesture synthesis, . . . )..</li>
-            <li>Meeting and evaluating third-party partners and open source solutions, interviewing applicants for ML positions, participating in meetings to plan the hardware and industrialization processes, and monitoring the ecosystem and state-of-the-art solutions.</li>
-            <li>Co-organizing ACE workshops at ICMI 2023 and IVA 2024, and being part of the IVA 2023, 2024 and ECAI 2024 program committees.</li>
-          </ul>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">TJ</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">Open to opportunities</div>
+                <h1>Modeling <span>human behavior</span> to build safer AI</h1>
+                <p class="hero-description">
+                    Research scientist with 10+ years bridging cognitive science and machine learning. 
+                    Currently building multimodal AI systems for social robots. Previously healthcare ML and affective computing research.
+                </p>
+                <div class="hero-cta">
+                    <a href="mailto:thomas.janssoone@gmail.com" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        Get in touch
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=qkOKEfMAAAAJ&hl" class="btn btn-secondary" target="_blank">
+                        View publications
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="experience">
-        <div class="experience-image" style="background-image: url('img/inria.png'); background-size: cover; background-position: center;"></div>
-        <div class="experience-content">
-          <h3>PostDoc, INRIA COML - Justine Cassel Team</h3>
-          <p>April 2021 - December 2021</p>
-          <p>Led the development of a comprehensive end-to-end interaction pipeline for research purposes with Virtual Agent system, as well as assisted Ph.D. students and interns in their daily tasks.</p>
-          <p>This research focused on Rapport, which can be seen as the degree of collusion during a dyadic interaction and can help achieve a goal (during tutoring, for example, a good rapport will lead to better results in the learning process).</p>
-          <p>Responsibilities included:</p>
-          <ul>
-            <li>Creating a system capable of extracting social signals to enable realistic interactions with a virtual agent.</li>
-            <li>extract from audio-video stream facial expressions, gazes, prosody,...</li>
-            <li>detect voice and apply Speech-to-Text method to get the semantic content (VAD, wav2vec, Bert, . . . )</li>
-            <li>design, train and test a Conversational Strategy classifier from pre-trained Bert models to detect specific patterns such as Question Eliciting or Violation of Social Norms</li>
-            <li>design, train and test a Rapport Classification model from previous features with a model’s decisions interpretation mechanism based on SHAP </li>
-            <li>Developing a set of tools for data annotation and experiment analysis to support researchers in collecting, labeling, and analyzing data from human-agent interactions.</li>
-            <li>Reviewing papers for international conferences, winning the Best Reviewer Award for ICMI 2021.</li>
-          </ul>
-        </div>
-      </div>
-      <!-- Add more work experience sections as needed -->
     </section>
 
-    <section>
-      <h2>Education</h2>
-      <div class="education">
-        <div class="education-image"></div>
-        <div class="education-content">
-          <h3>Ph.D. in Computer Science and Applied Mathematics</h3>
-          <p>September 2014 - February 2018</p>
-          <p>Sorbonne University (ISIR, and Telecom Paristech . TSI . Greta team)</p>
-          <p>Focused on the study of machine learning approaches to find temporal information in social interaction with both recognition and synthesis goals.</p>
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <div class="section-header">
+                        <div class="section-label">About</div>
+                        <h2 class="section-title">Where cognition meets computation</h2>
+                    </div>
+                    <p>
+                        For over a decade, I've been fascinated by one question: how do we build AI systems that truly understand humans? 
+                        My journey started with a PhD in affective computing at Sorbonne University, where I developed models to recognize 
+                        and synthesize social behaviors in virtual agents.
+                    </p>
+                    <p>
+                        Since then, I've applied this lens to healthcare (predicting patient behavior with interpretable ML at Semeia), 
+                        human-AI collaboration (modeling rapport at Inria), and now social robotics (building multimodal perception systems 
+                        at Enchanted Tools).
+                    </p>
+                    <p>
+                        I believe the path to beneficial AI runs through understanding human cognition—and making AI systems interpretable 
+                        enough that we can verify they're aligned with our values.
+                    </p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years in ML Research</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Publications</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Research Labs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Social Robot</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="education">
-        <div class="education-image"></div>
-        <div class="education-content">
-          <h3>Ensimag Master diploma</h3>
-          <p>September 2006 - July 2010</p>
-          <p>French Superior National School of Applied Mathematics and Computer Science, Grenoble</p>
-          <p>Three years of studies in Applied Mathematics and Full stack Computer Science, leading to a master's degree with a specialization in Image and Virtual Reality.</p>
-        </div>
-      </div>
-      <!-- Add more education sections as needed -->
     </section>
 
-    <section id="video">
-      <h2>Video Presentation</h2>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <!-- Replace "VIDEO_ID" with the actual YouTube video ID -->
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Experience</div>
+                <h2 class="section-title">Building at the intersection</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 — Present</div>
+                    <div class="timeline-title">Multimodal ML Expert</div>
+                    <div class="timeline-company">Enchanted Tools — Paris</div>
+                    <p class="timeline-description">
+                        Leading ML systems for Mirokai social robot. Integrating VLMs, LLMs, and speech models for natural human-robot interaction. 
+                        Building agentic pipelines with safety constraints. Managing team of ML engineers.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 — 2022</div>
+                    <div class="timeline-title">Postdoctoral Research Scientist</div>
+                    <div class="timeline-company">Inria COML, Justine Cassell's team — Paris</div>
+                    <p class="timeline-description">
+                        Developed interpretable deep learning models to predict rapport in human interactions from multimodal cues. 
+                        Built reusable toolkit for multimodal feature extraction and analysis.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2018 — 2021</div>
+                    <div class="timeline-title">Research Scientist</div>
+                    <div class="timeline-company">Semeia — Paris</div>
+                    <p class="timeline-description">
+                        Built predictive models on French National Health Data. Improved medication adherence prediction from 60% to 90%. 
+                        Implemented SHAP/LIME for clinical interpretability. Published at NeurIPS and MICCAI.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2014 — 2018</div>
+                    <div class="timeline-title">PhD Researcher</div>
+                    <div class="timeline-company">Sorbonne University / ISIR / Telecom ParisTech</div>
+                    <p class="timeline-description">
+                        Thesis on multimodal social signal analysis for affective virtual agents. Visiting scholar at USC ICT. 
+                        Developed computational frameworks for extracting and recognizing social behaviors.
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
-  </div>
+
+    <!-- Research Section -->
+    <section id="research">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Research Interests</div>
+                <h2 class="section-title">What I work on</h2>
+            </div>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-icon">🧠</div>
+                    <h3>Affective Computing</h3>
+                    <p>Understanding and modeling human emotions, social signals, and interpersonal dynamics through computational methods.</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🔍</div>
+                    <h3>AI Interpretability</h3>
+                    <p>Making ML models transparent and explainable, from SHAP/LIME applications in healthcare to mechanistic understanding of neural networks.</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🎯</div>
+                    <h3>Multimodal Learning</h3>
+                    <p>Integrating vision, speech, and language understanding for robust human-AI interaction in embodied systems.</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🤖</div>
+                    <h3>Social Robotics</h3>
+                    <p>Building AI systems that interact safely and naturally with humans, with appropriate social behaviors and safety constraints.</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">⚖️</div>
+                    <h3>AI Alignment</h3>
+                    <p>Applying insights from human behavior modeling to build AI systems that remain aligned with human values and intentions.</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🏥</div>
+                    <h3>Healthcare ML</h3>
+                    <p>Predictive models for patient behavior, treatment adherence, and care pathways with clinical interpretability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Selected Publications</div>
+                <h2 class="section-title">Research outputs</h2>
+            </div>
+            <div class="pub-list">
+                <a href="#" class="pub-item">
+                    <span class="pub-venue">HHAI '22</span>
+                    <div>
+                        <div class="pub-title">Estimating Rapport in Conversations: An Interpretable and Dyadic Multi-Modal Approach</div>
+                        <div class="pub-authors">G. Grimberg, T. Janssoone, C. Clavel, J. Cassell</div>
+                    </div>
+                </a>
+                <a href="#" class="pub-item">
+                    <span class="pub-venue">NeurIPS '18</span>
+                    <div>
+                        <div class="pub-title">AI for Patient Support: Predictive Model of Medication Non-Adherence</div>
+                        <div class="pub-authors">T. Janssoone, C. Bic, D. Kanoun, P. Hornus, P. Rinder</div>
+                    </div>
+                </a>
+                <a href="#" class="pub-item">
+                    <span class="pub-venue">MICCAI '18</span>
+                    <div>
+                        <div class="pub-title">Predictive Patient Care: Survival Model to Prevent Medication Non-Adherence</div>
+                        <div class="pub-authors">T. Janssoone, P. Rinder, H. Pierre, D. Kanoun</div>
+                    </div>
+                </a>
+                <a href="#" class="pub-item">
+                    <span class="pub-venue">IVA '16</span>
+                    <div>
+                        <div class="pub-title">Using Temporal Association Rules for the Synthesis of Embodied Conversational Agents with a Specific Stance</div>
+                        <div class="pub-authors">T. Janssoone, C. Clavel, K. Bailly, G. Richard</div>
+                    </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://scholar.google.com/citations?user=qkOKEfMAAAAJ&hl" class="btn btn-secondary" target="_blank">
+                    View all on Google Scholar →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-label">Get in touch</div>
+            <h2 class="section-title">Let's build something meaningful</h2>
+            <p class="contact-description">
+                Interested in AI safety, human-AI interaction, or interpretability research? 
+                I'm always open to conversations about research collaborations or opportunities.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:thomas.janssoone@gmail.com" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Email
+                </a>
+                <a href="https://linkedin.com/in/thomasjanssoone" class="contact-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/thomasjanssoone" class="contact-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+                <a href="https://scholar.google.com/citations?user=qkOKEfMAAAAJ&hl" class="contact-link" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+                    </svg>
+                    Scholar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 Thomas Janssoone — Built with curiosity and caffeine</p>
+        </div>
+    </footer>
 </body>
 </html>
