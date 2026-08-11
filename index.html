@@ -406,6 +406,27 @@
             font-size: 0.95rem;
         }
 
+        .timeline-link {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .timeline-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Clearly-visible TODO placeholder marker */
+        [data-todo] {
+            display: inline-block;
+            margin-top: 0.4rem;
+            padding: 0.1rem 0.5rem;
+            border: 1px dashed var(--gradient-1);
+            border-radius: 6px;
+            color: var(--gradient-1);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+
         /* Research Section */
         .research-grid {
             display: grid;
@@ -467,6 +488,100 @@
             font-size: 0.9rem;
         }
 
+        /* Projects & Demos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-4px);
+        }
+
+        .project-media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #101013;
+            overflow: hidden;
+        }
+
+        .project-media video,
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Styled placeholder shown when media is absent or fails to load */
+        .media-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-align: center;
+            padding: 1rem;
+            background:
+                radial-gradient(circle at 30% 30%, var(--accent-glow), transparent 60%),
+                repeating-linear-gradient(45deg, #141417 0 12px, #101013 12px 24px);
+            color: var(--text-muted);
+        }
+
+        .media-placeholder .ph-icon {
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        .media-placeholder .ph-file {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            word-break: break-all;
+        }
+
+        .media-placeholder .ph-note {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .project-body {
+            padding: 1.25rem 1.5rem 1.5rem;
+        }
+
+        .project-body h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.35rem;
+        }
+
+        .project-venue {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+        }
+
+        .project-caption {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
         /* Publications */
         .pub-list {
             display: flex;
@@ -510,6 +625,19 @@
         .pub-authors {
             font-size: 0.85rem;
             color: var(--text-muted);
+        }
+
+        .pub-badge {
+            display: inline-block;
+            margin-left: 0.5rem;
+            padding: 0.1rem 0.45rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            color: var(--bg-primary);
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            vertical-align: middle;
         }
 
         /* Contact Section */
@@ -615,6 +743,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#research">Research</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -627,8 +756,9 @@
                 <div class="hero-label">Open to opportunities</div>
                 <h1>Modeling <span>human behavior</span> to build safer AI</h1>
                 <p class="hero-description">
-                    Research scientist with 10+ years bridging cognitive science and machine learning. 
-                    Currently building multimodal AI systems for social robots. Previously healthcare ML and affective computing research.
+                    Research scientist with 10+ years bridging cognitive science and machine learning.
+                    Currently building plant genomic foundation models at Living Models. Previously multimodal AI for social robots,
+                    medical speech analysis, healthcare ML, and affective computing research.
                 </p>
                 <div class="hero-cta">
                     <a href="mailto:thomas.janssoone@gmail.com" class="btn btn-primary">
@@ -661,13 +791,14 @@
                         and synthesize social behaviors in virtual agents.
                     </p>
                     <p>
-                        Since then, I've applied this lens to healthcare (predicting patient behavior with interpretable ML at Semeia), 
-                        human-AI collaboration (modeling rapport at Inria), and now social robotics (building multimodal perception systems 
-                        at Enchanted Tools).
+                        Since then, I've applied this lens to healthcare (predicting patient behavior with interpretable ML at Semeia),
+                        human-AI collaboration (modeling rapport at Inria), social robotics (multimodal perception for the Mirokai robot at
+                        Enchanted Tools), and medical speech analysis for emergency triage at e-sensia. Today I build plant genomic foundation
+                        models at Living Models.
                     </p>
                     <p>
-                        I believe the path to beneficial AI runs through understanding human cognition—and making AI systems interpretable 
-                        enough that we can verify they're aligned with our values.
+                        I believe the path to beneficial AI runs through understanding the systems we model—and making AI interpretable
+                        enough that we can verify it does what we intend.
                     </p>
                 </div>
                 <div class="stats-grid">
@@ -676,16 +807,16 @@
                         <div class="stat-label">Years in ML Research</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">12</div>
-                        <div class="stat-label">Publications</div>
+                        <div class="stat-number">~121</div>
+                        <div class="stat-label">Citations (Scholar)</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Research Labs</div>
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">h-index</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">1</div>
-                        <div class="stat-label">Social Robot</div>
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">Selected Publications</div>
                     </div>
                 </div>
             </div>
@@ -701,23 +832,46 @@
             </div>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-date">Sep 2024 — Jan 2025</div>
-                    <div class="timeline-title">AI Researcher – Pathology Detection</div>
-                    <div class="timeline-company">e-sensia — Paris</div>
+                    <div class="timeline-date">Apr 2026 — Present</div>
+                    <div class="timeline-title">AI Researcher</div>
+                    <div class="timeline-company">Living Models — Paris</div>
                     <p class="timeline-description">
-                        Developed multimodal AI systems for emergency pathology detection from speech and video, combining fine-tuned audio language models 
-                        (Whisper, Wav2Vec2, EnCodec) with raw signal processing and synchronized visual analysis. Led preparation of competitive innovation 
-                        funding applications (BPI France Pionnier IA, i-Lab; CIR technical dossiers) and collaborated with clinical partners to validate models 
-                        on real-world emergency medical data. Short-term engagement concluded due to organizational maturity mismatch with early-stage startup structure.
+                        Building plant genomic foundation models across dozens of crop species. Designing long-context architectures
+                        (Mamba, SSM/transformer hybrids) at single-base resolution, and post-training beyond masked language modelling —
+                        functional supervision, regulatory atlases, and breeding-relevant readouts. Building evaluation suites meant to be
+                        meaningful to breeders rather than leaderboards, backed by an agentic research stack.
                     </p>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">2022 — 2025</div>
+                    <div class="timeline-date">2025 — Present</div>
+                    <div class="timeline-title">Independent Research</div>
+                    <div class="timeline-company">Concilium — Multi-Agent LLM Systems</div>
+                    <p class="timeline-description">
+                        Multi-agent LLM systems for long-horizon tasks that coordinate via democratic voting and hormonal-style feedback
+                        signalling. Documented an open-loop coordination failure — signals emitted but no longer feeding back into shared state.
+                        <!-- [TODO: link to public repo/writeup — URL to be provided] -->
+                        <a href="#" class="timeline-link" data-todo="concilium-url">[TODO: add repo/writeup link]</a>
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Sep 2025 — Feb 2026</div>
+                    <div class="timeline-title">AI Research Scientist — Medical Speech Analysis</div>
+                    <div class="timeline-company">e-sensia — Paris</div>
+                    <p class="timeline-description">
+                        Developed multimodal speech systems for emergency triage, combining fine-tuned audio models
+                        (Whisper, Wav2Vec2, EnCodec) with raw signal processing. Led the ESYNAPSE grant — a France 2030
+                        "Pionniers de l'IA" laureate worth up to €10M — and collaborated with clinical partners to validate
+                        models on real-world emergency medical data.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2022 — Aug 2025</div>
                     <div class="timeline-title">Multimodal ML Expert</div>
                     <div class="timeline-company">Enchanted Tools — Paris</div>
                     <p class="timeline-description">
-                        Leading ML systems for Mirokai social robot. Integrating VLMs, LLMs, and speech models for natural human-robot interaction. 
-                        Building agentic pipelines with safety constraints. Managing team of ML engineers.
+                        Built ML systems for the Mirokai social robot, integrating VLMs, LLMs, and speech models for natural
+                        human-robot interaction. Developed agentic pipelines with safety constraints and worked alongside a team
+                        of ML engineers.
                     </p>
                 </div>
                 <div class="timeline-item">
@@ -793,6 +947,121 @@
         </div>
     </section>
 
+    <!-- Projects & Demos Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Projects &amp; Demos</div>
+                <h2 class="section-title">Systems in motion</h2>
+            </div>
+            <div class="projects-grid">
+
+                <!-- Mirokai -->
+                <article class="project-card">
+                    <div class="project-media">
+                        <video class="lazy-media" controls preload="metadata" playsinline
+                               style="display:none"
+                               aria-label="Mirokai social robot in interaction"
+                               data-src="assets/media/mirokai-demo.mp4">
+                            <!-- [TODO: add captions] <track kind="captions" srclang="en" label="English" src="assets/media/mirokai-demo.vtt"> -->
+                        </video>
+                        <div class="media-placeholder">
+                            <div class="ph-icon">🎬</div>
+                            <div class="ph-file">assets/media/mirokai-demo.mp4</div>
+                            <div class="ph-note">Drop the file in to replace this placeholder</div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3>Mirokai — Social Robot</h3>
+                        <div class="project-venue">Enchanted Tools</div>
+                        <p class="project-caption">
+                            <span data-todo="mirokai-caption">[TODO: caption]</span>
+                            Mirokai social robot in interaction.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- 3D Gesture Guidance -->
+                <article class="project-card">
+                    <div class="project-media">
+                        <video class="lazy-media" controls preload="metadata" playsinline
+                               style="display:none"
+                               aria-label="3D gesture guidance AR interface demo"
+                               data-src="assets/media/gesture-guidance.mp4">
+                            <!-- [TODO: add captions] <track kind="captions" srclang="en" label="English" src="assets/media/gesture-guidance.vtt"> -->
+                        </video>
+                        <div class="media-placeholder">
+                            <div class="ph-icon">🎬</div>
+                            <div class="ph-file">assets/media/gesture-guidance.mp4</div>
+                            <div class="ph-note">Drop the file in to replace this placeholder</div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3>3D Gesture Guidance <span class="pub-badge">MOST CITED</span></h3>
+                        <div class="project-venue">Delamare et al., AVI 2016</div>
+                        <p class="project-caption">
+                            <span data-todo="gesture-caption">[TODO: caption]</span>
+                            3D gesture guidance AR interface.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Biopsym -->
+                <article class="project-card">
+                    <div class="project-media">
+                        <video class="lazy-media" controls preload="metadata" playsinline
+                               style="display:none"
+                               aria-label="Biopsym ultrasound-guided prostate biopsy training simulator"
+                               data-src="assets/media/biopsym-demo.mp4">
+                            <!-- [TODO: add captions] <track kind="captions" srclang="en" label="English" src="assets/media/biopsym-demo.vtt"> -->
+                        </video>
+                        <div class="media-placeholder">
+                            <div class="ph-icon">🎬</div>
+                            <div class="ph-file">assets/media/biopsym-demo.mp4</div>
+                            <div class="ph-note">Drop the file in to replace this placeholder</div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3>Biopsym — Biopsy Simulator</h3>
+                        <div class="project-venue">MMVR 2011</div>
+                        <p class="project-caption">
+                            <span data-todo="biopsym-caption">[TODO: caption]</span>
+                            Ultrasound-guided prostate biopsy training simulator.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- POTUS Corpus (video OR image) -->
+                <article class="project-card">
+                    <div class="project-media">
+                        <video class="lazy-media" controls preload="metadata" playsinline
+                               style="display:none"
+                               aria-label="POTUS Corpus: weekly presidential addresses for stance study"
+                               poster="assets/media/potus-corpus.png"
+                               data-src="assets/media/potus-corpus.mp4"
+                               data-fallback-img="assets/media/potus-corpus.png">
+                            <!-- [TODO: add captions] <track kind="captions" srclang="en" label="English" src="assets/media/potus-corpus.vtt"> -->
+                        </video>
+                        <div class="media-placeholder">
+                            <div class="ph-icon">🖼️</div>
+                            <div class="ph-file">assets/media/potus-corpus.mp4 or .png</div>
+                            <div class="ph-note">Drop either file in to replace this placeholder</div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <h3>The POTUS Corpus</h3>
+                        <div class="project-venue">LREC 2020</div>
+                        <p class="project-caption">
+                            <span data-todo="potus-caption">[TODO: caption]</span>
+                            Weekly presidential addresses for stance study.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Publications Section -->
     <section id="publications">
         <div class="container">
@@ -801,28 +1070,55 @@
                 <h2 class="section-title">Research outputs</h2>
             </div>
             <div class="pub-list">
-                <a href="https://www.hhai-conference.org/wp-content/uploads/2022/08/hhai-2021_paper_48.pdf" class="pub-item">
+                <!-- [TODO: add public URL for the AVI 2016 paper] -->
+                <div class="pub-item" data-pub="avi2016">
+                    <span class="pub-venue">AVI '16</span>
+                    <div>
+                        <div class="pub-title">Designing 3D gesture guidance…<span class="pub-badge">MOST CITED</span></div>
+                        <div class="pub-authors">W. Delamare, T. Janssoone, C. Coutrix, L. Nigay</div>
+                        <a href="#" class="timeline-link" data-todo="avi2016-url">[TODO: add paper link]</a>
+                    </div>
+                </div>
+                <!-- [TODO: add public URL for the ICMI 2023 paper] -->
+                <div class="pub-item" data-pub="icmi2023">
+                    <span class="pub-venue">ICMI '23</span>
+                    <div>
+                        <div class="pub-title">Automatic Detection of Gaze and Smile in Children's Video Calls</div>
+                        <div class="pub-authors">O. Goumri, T. Janssoone, et al.</div>
+                        <a href="#" class="timeline-link" data-todo="icmi2023-url">[TODO: add paper link]</a>
+                    </div>
+                </div>
+                <a href="https://www.hhai-conference.org/wp-content/uploads/2022/08/hhai-2021_paper_48.pdf" class="pub-item" target="_blank" rel="noopener">
                     <span class="pub-venue">HHAI '22</span>
                     <div>
                         <div class="pub-title">Estimating Rapport in Conversations: An Interpretable and Dyadic Multi-Modal Approach</div>
                         <div class="pub-authors">G. Grimberg, T. Janssoone, C. Clavel, J. Cassell</div>
                     </div>
                 </a>
-                <a href="https://arxiv.org/pdf/1811.12234" class="pub-item">
+                <!-- [TODO: add public URL for the POTUS Corpus LREC 2020 paper] -->
+                <div class="pub-item" data-pub="lrec2020">
+                    <span class="pub-venue">LREC '20</span>
+                    <div>
+                        <div class="pub-title">The POTUS Corpus…</div>
+                        <div class="pub-authors">T. Janssoone, et al.</div>
+                        <a href="#" class="timeline-link" data-todo="lrec2020-url">[TODO: add paper link]</a>
+                    </div>
+                </div>
+                <a href="https://arxiv.org/pdf/1811.12234" class="pub-item" target="_blank" rel="noopener">
                     <span class="pub-venue">NeurIPS '18</span>
                     <div>
-                        <div class="pub-title">AI for Patient Support: Predictive Model of Medication Non-Adherence</div>
+                        <div class="pub-title">AI for Patient Support: Predictive Model of Medication Non-Adherence (ML4H)</div>
                         <div class="pub-authors">T. Janssoone, C. Bic, D. Kanoun, P. Hornus, P. Rinder</div>
                     </div>
                 </a>
-                <a href="https://link.springer.com/chapter/10.1007/978-3-030-00320-3_6" class="pub-item">
+                <a href="https://link.springer.com/chapter/10.1007/978-3-030-00320-3_6" class="pub-item" target="_blank" rel="noopener">
                     <span class="pub-venue">MICCAI '18</span>
                     <div>
-                        <div class="pub-title">Predictive Patient Care: Survival Model to Prevent Medication Non-Adherence</div>
+                        <div class="pub-title">Predictive Patient Care: Survival Model to Prevent Medication Non-Adherence (PRIME)</div>
                         <div class="pub-authors">T. Janssoone, P. Rinder, H. Pierre, D. Kanoun</div>
                     </div>
                 </a>
-                <a href="https://hal.science/hal-03181846/document" class="pub-item">
+                <a href="https://hal.science/hal-03181846/document" class="pub-item" target="_blank" rel="noopener">
                     <span class="pub-venue">IVA '16</span>
                     <div>
                         <div class="pub-title">Using Temporal Association Rules for the Synthesis of Embodied Conversational Agents with a Specific Stance</div>
@@ -855,29 +1151,43 @@
                     </svg>
                     Email
                 </a>
-                <a href="https://linkedin.com/in/thomas-janssoone" class="contact-link" target="_blank">
+                <a href="https://linkedin.com/in/thomas-janssoone" class="contact-link" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
                     LinkedIn
                 </a>
-                <a href="https://github.com/thomasjanssoone" class="contact-link" target="_blank">
+                <a href="https://thomasjanssoone.github.io" class="contact-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    Portfolio
+                </a>
+                <a href="https://github.com/ThomasJanssoone" class="contact-link" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                     GitHub
                 </a>
-                <a href="https://gitlab.com/Thom_ET" class="contact-link" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="m15.734 6.1-.022-.058L13.534.358a.57.57 0 0 0-.563-.356.6.6 0 0 0-.328.122.6.6 0 0 0-.193.294l-1.47 4.499H5.025l-1.47-4.5A.572.572 0 0 0 2.47.358L.289 6.04l-.022.057A4.044 4.044 0 0 0 1.61 10.77l.007.006.02.014 3.318 2.485 1.64 1.242 1 .755a.67.67 0 0 0 .814 0l1-.755 1.64-1.242 3.338-2.5.009-.007a4.05 4.05 0 0 0 1.34-4.668Z"/>
-                    </svg>
-                    Gitlab
-                </a>
-                <a href="https://scholar.google.com/citations?user=qkOKEfMAAAAJ&hl" class="contact-link" target="_blank">
+                <a href="https://scholar.google.com/citations?user=qkOKEfMAAAAJ" class="contact-link" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
                     </svg>
                     Scholar
+                </a>
+                <a href="https://orcid.org/0000-0002-2316-4249" class="contact-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/>
+                    </svg>
+                    ORCID
+                </a>
+                <a href="https://gitlab.com/Thom_ET" class="contact-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="m15.734 6.1-.022-.058L13.534.358a.57.57 0 0 0-.563-.356.6.6 0 0 0-.328.122.6.6 0 0 0-.193.294l-1.47 4.499H5.025l-1.47-4.5A.572.572 0 0 0 2.47.358L.289 6.04l-.022.057A4.044 4.044 0 0 0 1.61 10.77l.007.006.02.014 3.318 2.485 1.64 1.242 1 .755a.67.67 0 0 0 .814 0l1-.755 1.64-1.242 3.338-2.5.009-.007a4.05 4.05 0 0 0 1.34-4.668Z"/>
+                    </svg>
+                    GitLab
                 </a>
             </div>
         </div>
@@ -886,8 +1196,68 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>© 2024 Thomas Janssoone — Built with curiosity and caffeine</p>
+            <p>© 2026 Thomas Janssoone — Built with curiosity and caffeine</p>
         </div>
     </footer>
+
+    <!-- Lazy-load project media with graceful fallback to styled placeholder -->
+    <script>
+        (function () {
+            const media = document.querySelectorAll('.lazy-media');
+
+            function showPlaceholder(el) {
+                el.style.display = 'none';
+                // placeholder stays visible (it is the default state)
+            }
+
+            function reveal(el) {
+                const ph = el.closest('.project-media').querySelector('.media-placeholder');
+                el.style.display = '';
+                if (ph) ph.style.display = 'none';
+            }
+
+            function tryFallbackImage(videoEl) {
+                const src = videoEl.getAttribute('data-fallback-img');
+                if (!src) { showPlaceholder(videoEl); return; }
+                const img = document.createElement('img');
+                img.alt = videoEl.getAttribute('aria-label') || '';
+                img.style.display = 'none';
+                img.addEventListener('load', function () { reveal(img); }, { once: true });
+                img.addEventListener('error', function () { img.remove(); }, { once: true });
+                videoEl.closest('.project-media').appendChild(img);
+                videoEl.style.display = 'none';
+                img.src = src;
+            }
+
+            function load(el) {
+                const src = el.getAttribute('data-src');
+                if (!src) return;
+                if (el.tagName === 'VIDEO') {
+                    el.addEventListener('loadeddata', function () { reveal(el); }, { once: true });
+                    el.addEventListener('error', function () { tryFallbackImage(el); }, { once: true });
+                    el.src = src;
+                    el.load();
+                } else {
+                    el.addEventListener('load', function () { reveal(el); }, { once: true });
+                    el.addEventListener('error', function () { showPlaceholder(el); }, { once: true });
+                    el.src = src;
+                }
+            }
+
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver(function (entries, obs) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            load(entry.target);
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '200px' });
+                media.forEach(function (el) { io.observe(el); });
+            } else {
+                media.forEach(load);
+            }
+        })();
+    </script>
 </body>
 </html>
