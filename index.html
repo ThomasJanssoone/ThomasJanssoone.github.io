@@ -995,8 +995,24 @@
                         <a href="https://huggingface.co/spaces/living-models/botanic1-report" class="timeline-link" target="_blank" rel="noopener">the Botanic1 report</a>
                         on Hugging Face, alongside the
                         <a href="https://huggingface.co/living-models" class="timeline-link" target="_blank" rel="noopener">Botanic0 and Botanic1 weights</a>
-                        (0.3B to 2B) and the pretraining dataset.
+                        (0.3B to 2B) and the pretraining dataset. The work is written up in
+                        <a href="https://doi.org/10.64898/2026.09.04.749355" class="timeline-link" target="_blank" rel="noopener">the Botanic1 preprint</a>.
                     </p>
+
+                    <p class="timeline-description">
+                        <strong>A model factory rather than a model.</strong> The corpus spans 320 species across 102
+                        families — the broadest taxonomic coverage of any plant genomic language model so far — and the
+                        backbone is a stack of bidirectional Mamba2 blocks released at four sizes from 318M to 3.2B
+                        parameters. Pre-training runs at 8,192 bp and extends to 131,072 bp, which is what makes
+                        needle-in-a-haystack retrieval across a genome possible at all. On the aggregate balanced
+                        score, all four Botanic1 sizes rank above every other model evaluated.
+                    </p>
+
+                    <figure class="figure">
+                        <img src="assets/media/botanic1-model-factory.png" loading="lazy" width="1700" height="1761"
+                             alt="Four-panel figure. a, model training: 320 plant species and 59 Gbp of data feeding a BiMamba2 stack of 24 to 80 blocks predicting masked single-nucleotide tokens, with released sizes from 318M to 3.2B parameters. b, six evaluation regimes from frozen embeddings and LoRA to full fine-tuning, zero-shot scores, interpretability and long-context retrieval. c, context sizes from 512 bp probe tasks to 131,072 bp retrieval. d, model ranking by balanced score, with the four Botanic1 models occupying the top four positions ahead of PlantCAD2-L and PlantCaduceus.">
+                        <figcaption>The Botanic1 model factory: training, evaluation regimes, context sizes, and the test leaderboard. Figure 1 from Barozet, Cabeli, Ogier du Terrail, Rukhovich, Janssoone et al., bioRxiv 2026 (CC BY 4.0).</figcaption>
+                    </figure>
                 </div>
 
                 <div class="timeline-item">

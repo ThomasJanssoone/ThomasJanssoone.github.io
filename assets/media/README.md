@@ -25,6 +25,7 @@ Figures used by `index.html`.
 | `action-units.png`     | Janssoone et al., *The POTUS Corpus*, LREC 2020               | CC BY-NC, attributed in caption |
 | `cloning-protocol.png` | Janssoone et al., *The POTUS Corpus*, LREC 2020               | CC BY-NC, attributed in caption |
 | `octopocus3d.png`      | Delamare, Janssoone, Coutrix & Nigay, *Designing 3D Gesture Guidance*, AVI 2016 | © ACM, author's version; posted under ACM author rights on the author's own site |
+| `botanic1-model-factory.png` | Barozet, Cabeli, Ogier du Terrail, Rukhovich, Janssoone et al., *BOTANIC-1*, bioRxiv 2026, Figure 1 | CC BY 4.0, attributed in caption |
 
 Notes:
 - `.figure img` sets `height: auto` — do not remove it. The `width`/`height`
@@ -38,5 +39,6 @@ Notes:
   PowerPoint shapes rather than an image. Node labels and the edge list come
   from the slide's own geometry; the layout is new. It carries its own dark
   background, so its `.figure img` background is overridden inline.
-- Not used, by decision: the BOTANIC-1 model card and the agentic BSA pipeline
-  (slides 15-16), as unreleased Living Models material.
+- `botanic1-model-factory.png` comes from the published preprint, not the talk
+  deck, so it is CC BY 4.0 rather than unreleased material. The agentic BSA
+  pipeline from slide 16 is still unused.
