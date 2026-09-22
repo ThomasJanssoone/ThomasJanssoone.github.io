@@ -1020,25 +1020,70 @@
                     <div class="timeline-company">Sorbonne Université / ISIR / Télécom ParisTech</div>
                     <p class="timeline-description">
                         Recognising social signals for affective virtual agents, with no black box anywhere in the
-                        pipeline. Signal extraction (action units, prosody, head motion) feeding TITARL temporal
-                        association rules, then a discrimination metric to isolate the rules specific to one
-                        interpersonal attitude. Two generation strategies — cloning a speaker's signals, or applying the
-                        learned rules — both evaluated with users. Five publications (ICMI, IVA, WACAI, RIA, LREC) and a
-                        visiting period at USC ICT.
+                        pipeline. Five publications (ICMI, IVA, WACAI, RIA, LREC) and a visiting period at USC ICT.
                     </p>
 
-                    <figure class="figure fig-small">
-                        <video src="assets/media/potus-corpus.mp4" poster="assets/media/potus-corpus.png"
-                               autoplay muted loop playsinline preload="metadata"
-                               aria-label="Side-by-side animation: a recorded speaker's head movements and facial expressions reproduced on a virtual agent."></video>
-                        <figcaption>Cloning a speaker's social signals onto a virtual agent, from the POTUS corpus of weekly presidential addresses (LREC 2020).</figcaption>
+                    <p class="timeline-description">
+                        <strong>What a social signal looks like to a machine.</strong> An interpersonal attitude is
+                        not observable, but the facial actions that carry it are. Brow raisers, lid tighteners, lip
+                        corner pullers — the Facial Action Coding System turns a face into a vocabulary of discrete,
+                        timestamped events that a rule miner can work with, alongside prosody and head motion.
+                    </p>
+
+                    <figure class="figure fig-mid">
+                        <img src="assets/media/action-units.png" loading="lazy" width="838" height="460"
+                             alt="Twelve labelled close-up crops of facial regions, each illustrating one Action Unit: inner and outer brow raiser, brow lowerer, upper lid raiser, cheek raiser, lid tightener, nose wrinkler, upper lip raiser, lip corner puller and depressor, chin raiser, lip stretcher.">
+                        <figcaption>The Action Units extracted from each speaker. Janssoone et al., LREC 2020 (CC BY-NC).</figcaption>
                     </figure>
+
+                    <p class="timeline-description">
+                        <strong>From corpus to interpretable rules.</strong> Those symbolised signals feed TITARL
+                        temporal association rules, then a discrimination metric isolates the rules specific to one
+                        attitude rather than the ones every speaker produces. What comes out is readable: a set of
+                        timed if-then statements, not a weight matrix.
+                    </p>
 
                     <figure class="figure">
                         <img src="assets/media/smart-pipeline.png" loading="lazy" width="1600" height="833"
                              alt="Two-part diagram of the SMART pipeline: study corpus to signal extraction to simple rule computation to discrimination between common and specific rules; below, the temporal association rule mining loop of rule creation, division and refinement."
                              style="background:#0a0a0b">
                         <figcaption>The SMART pipeline (top) and the TITARL rule-mining loop (bottom) — original thesis figures, labelled in French.</figcaption>
+                    </figure>
+
+                    <p class="timeline-description">
+                        <strong>Two strategies, both put in front of users.</strong> Either clone a speaker's signals
+                        onto the agent directly, or build a model from the corpus and let the rules drive generation.
+                        Both routes end at the same place — human raters — and both feed back: if the clone is not
+                        faithful enough, the extraction gets adjusted; if the evaluation is inconclusive, the model does.
+                    </p>
+
+                    <figure class="figure">
+                        <img src="assets/media/cloning-protocol.png" loading="lazy" width="960" height="696"
+                             alt="Flow diagram: data collection feeds social signal extraction, producing a set of signals; a cloning strategy reproduces the original data and a rule strategy builds a model from it, each yielding data evaluated by users, with dashed feedback arrows returning to extraction, to the model, and to data collection.">
+                        <figcaption>The cloning and rule-based strategies, with their evaluation loops. Janssoone et al., LREC 2020 (CC BY-NC).</figcaption>
+                    </figure>
+
+                    <figure class="figure fig-small">
+                        <video src="assets/media/potus-corpus.mp4" poster="assets/media/potus-corpus.png"
+                               autoplay muted loop playsinline preload="metadata"
+                               aria-label="Side-by-side animation: a recorded speaker's head movements and facial expressions reproduced on a virtual agent."></video>
+                        <figcaption>The result: a speaker's social signals cloned onto a virtual agent, from the POTUS corpus of weekly presidential addresses (LREC 2020).</figcaption>
+                    </figure>
+
+                    <p class="timeline-description">
+                        <strong>A detour, and the most cited thing I have written.</strong> Separate work at LIG
+                        Grenoble, on the other side of the same problem: instead of reading a human's gestures,
+                        guiding them. OctoPocus3D shows a whole 3D gesture set as coloured pipes starting from the
+                        user's hand, thinning as the recogniser rules candidates out. Concurrent feedback raised the
+                        recognition rate by 10% for novices, and showing only the upcoming portion of a gesture cut
+                        completion time by 8% — less visual clutter beat more anticipation.
+                    </p>
+
+                    <figure class="figure">
+                        <img src="assets/media/octopocus3d.png" loading="lazy" width="1340" height="472"
+                             alt="Three frames of the OctoPocus3D guide on a black grid: first the full set of coloured 3D gesture pipes labelled with city names, then the set thinning as the user follows one gesture, then only the two most likely gestures remaining."
+                             style="background:#000">
+                        <figcaption>OctoPocus3D: the full gesture set (a), thinning as the user commits (b), then resolved (c). Delamare, Janssoone, Coutrix &amp; Nigay, AVI 2016 · © ACM, author's version.</figcaption>
                     </figure>
                 </div>
             </div>
