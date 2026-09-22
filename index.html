@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thomas Janssoone — Computational Behavior × AI</title>
-    <meta name="description" content="Research Scientist specializing in multimodal ML, affective computing, and AI interpretability">
+    <title>Thomas Janssoone — Extracting reliable signals from hidden states</title>
+    <meta name="description" content="Research scientist working on interpretable multimodal ML — affective computing, social robotics, healthcare risk, plant genomic foundation models, and multi-agent coordination.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -294,32 +294,9 @@
             letter-spacing: -0.02em;
         }
 
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .about-text p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .about-text p:first-of-type::first-letter {
-            font-family: 'Instrument Serif', serif;
-            font-size: 3.5rem;
-            float: left;
-            line-height: 1;
-            margin-right: 0.5rem;
-            color: var(--text-primary);
-        }
-
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
         }
 
@@ -406,6 +383,15 @@
             font-size: 0.95rem;
         }
 
+        .timeline-description + .timeline-description {
+            margin-top: 1.25rem;
+        }
+
+        .timeline-description strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
         .timeline-link {
             color: var(--accent);
             text-decoration: none;
@@ -413,18 +399,6 @@
 
         .timeline-link:hover {
             text-decoration: underline;
-        }
-
-        /* Clearly-visible TODO placeholder marker */
-        [data-todo] {
-            display: inline-block;
-            margin-top: 0.4rem;
-            padding: 0.1rem 0.5rem;
-            border: 1px dashed var(--gradient-1);
-            border-radius: 6px;
-            color: var(--gradient-1);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
         }
 
         /* Research Section */
@@ -484,100 +458,6 @@
         }
 
         .research-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Projects & Demos */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s;
-        }
-
-        .project-card:hover {
-            border-color: var(--text-muted);
-            transform: translateY(-4px);
-        }
-
-        .project-media {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #101013;
-            overflow: hidden;
-        }
-
-        .project-media video,
-        .project-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Styled placeholder shown when media is absent or fails to load */
-        .media-placeholder {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            text-align: center;
-            padding: 1rem;
-            background:
-                radial-gradient(circle at 30% 30%, var(--accent-glow), transparent 60%),
-                repeating-linear-gradient(45deg, #141417 0 12px, #101013 12px 24px);
-            color: var(--text-muted);
-        }
-
-        .media-placeholder .ph-icon {
-            font-size: 2rem;
-            opacity: 0.8;
-        }
-
-        .media-placeholder .ph-file {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            word-break: break-all;
-        }
-
-        .media-placeholder .ph-note {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-
-        .project-body {
-            padding: 1.25rem 1.5rem 1.5rem;
-        }
-
-        .project-body h3 {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 0.35rem;
-        }
-
-        .project-venue {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            color: var(--accent);
-            margin-bottom: 0.6rem;
-        }
-
-        .project-caption {
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
@@ -698,15 +578,191 @@
             font-size: 0.85rem;
         }
 
+        /* ---- Figures ---- */
+        .figure {
+            margin: 2rem 0;
+        }
+
+        .figure img,
+        .figure video {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #fff;
+        }
+
+        .figure figcaption {
+            margin-top: 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .fig-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .fig-narrow {
+            max-width: 620px;
+        }
+
+        /* ---- Metric pills ---- */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .metric {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .metric-value {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.9rem;
+            line-height: 1.1;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.35rem;
+        }
+
+        /* ---- Callout ---- */
+        .callout {
+            margin: 1.5rem 0;
+            padding: 1rem 1.25rem;
+            border-left: 2px solid var(--gradient-1);
+            border-radius: 0 12px 12px 0;
+            background: linear-gradient(90deg, rgba(220, 178, 51, 0.07), transparent);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .callout strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* ---- Results table ---- */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        table.results {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        table.results th,
+        table.results td {
+            padding: 0.65rem 0.8rem;
+            border-bottom: 1px solid var(--border);
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        table.results th:first-child,
+        table.results td:first-child {
+            text-align: left;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        table.results thead th {
+            font-weight: 500;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        table.results td.best {
+            color: var(--gradient-1);
+        }
+
+        table.results tr.baseline td {
+            color: var(--text-muted);
+        }
+
+        /* ---- Long-form text ---- */
+        .lead {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 52rem;
+        }
+
+        .lead + .lead {
+            margin-top: 1.25rem;
+        }
+
+        .q-statement {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+            line-height: 1.3;
+            max-width: 46rem;
+            margin-bottom: 2rem;
+        }
+
+        .q-statement em {
+            font-style: italic;
+            color: var(--gradient-1);
+        }
+
+        .sub-heading {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gradient-2);
+            margin: 3rem 0 1rem;
+        }
+
+        .step-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--gradient-2);
+        }
+
+        .limit-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .limit-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .limit-card h4 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .limit-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
             }
 
             .hero {
@@ -715,6 +771,11 @@
 
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+
+            .fig-pair,
+            .limit-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -740,25 +801,25 @@
     <nav>
         <div class="logo">Thomas Janssoone</div>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#question">The question</a></li>
+            <li><a href="#path">The path</a></li>
+            <li><a href="#thread">Through-line</a></li>
+            <li><a href="#deepdive">Deep dive</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-label">Open to opportunities</div>
-                <h1>Modeling <span>human behavior</span> to build safer AI</h1>
+                <h1>Extracting a reliable signal from <span>hidden states</span></h1>
                 <p class="hero-description">
-                    Research scientist with 10+ years bridging cognitive science and machine learning.
-                    Currently building plant genomic foundation models at Living Models. Previously multimodal AI for social robots,
-                    medical speech analysis, healthcare ML, and affective computing research.
+                    Ten years asking one question across affect, patient risk, robot behaviour, genomes and
+                    multi-agent coordination — and making the resulting models trustworthy enough to deploy.
+                    Currently building plant genomic foundation models at Living Models.
                 </p>
                 <div class="hero-cta">
                     <a href="mailto:thomas.janssoone@gmail.com" class="btn btn-primary">
@@ -768,324 +829,457 @@
                         </svg>
                         Get in touch
                     </a>
-                    <a href="https://scholar.google.com/citations?user=qkOKEfMAAAAJ&hl" class="btn btn-secondary" target="_blank">
-                        View publications
-                    </a>
+                    <a href="#deepdive" class="btn btn-secondary">Read the deep dive →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text">
-                    <div class="section-header">
-                        <div class="section-label">About</div>
-                        <h2 class="section-title">Where cognition meets computation</h2>
-                    </div>
-                    <p>
-                        For over a decade, I've been fascinated by one question: how do we build AI systems that truly understand humans? 
-                        My journey started with a PhD in affective computing at Sorbonne University, where I developed models to recognize 
-                        and synthesize social behaviors in virtual agents.
-                    </p>
-                    <p>
-                        Since then, I've applied this lens to healthcare (predicting patient behavior with interpretable ML at Semeia),
-                        human-AI collaboration (modeling rapport at Inria), social robotics (multimodal perception for the Mirokai robot at
-                        Enchanted Tools), and medical speech analysis for emergency triage at e-sensia. Today I build plant genomic foundation
-                        models at Living Models.
-                    </p>
-                    <p>
-                        I believe the path to beneficial AI runs through understanding the systems we model—and making AI interpretable
-                        enough that we can verify it does what we intend.
-                    </p>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Years in ML Research</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">~121</div>
-                        <div class="stat-label">Citations (Scholar)</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">6</div>
-                        <div class="stat-label">h-index</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">7</div>
-                        <div class="stat-label">Selected Publications</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
+    <!-- 1. The question -->
+    <section id="question">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Experience</div>
-                <h2 class="section-title">Building at the intersection</h2>
+                <div class="section-label">The question</div>
+                <h2 class="section-title">One question, several settings</h2>
             </div>
+
+            <p class="q-statement">
+                How do you extract a reliable signal about a <em>hidden state</em> — affect, patient risk,
+                robot behaviour, genome function, agent coordination — from multimodal or sequential data,
+                and make the resulting model <em>trustworthy</em>?
+            </p>
+
+            <p class="lead">
+                A hidden state is never observed directly. It is read through observable cues, each only partly
+                valid — Brunswik's lens, 1952. The weakest cues often carry the information the salient ones do not,
+                which is why subtle signals are worth the trouble of modelling.
+            </p>
+            <p class="lead">
+                Interpretability does more than explain. It lets you test what a model learned against the literature
+                of the field, and sometimes find explanations deeper than the ones already described. Every step below
+                is the same question applied to increasingly complex data.
+            </p>
+
+            <figure class="figure fig-narrow">
+                <img src="assets/media/brunswik-lens.png" loading="lazy" width="960" height="598"
+                     alt="Brunswik lens model: a hidden state is externalized as distal cues, perceived as proximal cues, and attributed as a perceptual judgment; automatic recognition and synthesis mirror this at the technical level.">
+                <figcaption>The Brunswik lens (1952) — the framing behind every project on this page. Figure after Brunswik; technical-level annotation as used in affective computing.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- 2. The path -->
+    <section id="path">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">The path</div>
+                <h2 class="section-title">Seven steps, one question</h2>
+            </div>
+
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-date">Apr 2026 — Present</div>
-                    <div class="timeline-title">AI Researcher</div>
+                    <div class="timeline-date">Apr 2026 — Present <span class="step-tag">· step 7</span></div>
+                    <div class="timeline-title">AI Researcher — Plant Genomics</div>
                     <div class="timeline-company">Living Models — Paris</div>
                     <p class="timeline-description">
-                        Building plant genomic foundation models across dozens of crop species. Designing long-context architectures
-                        (Mamba, SSM/transformer hybrids) at single-base resolution, and post-training beyond masked language modelling —
-                        functional supervision, regulatory atlases, and breeding-relevant readouts. Building evaluation suites meant to be
-                        meaningful to breeders rather than leaderboards, backed by an agentic research stack.
+                        Genomic foundation models (BOTANIC-0 / BOTANIC-1) across dozens of crop species: long-context
+                        Mamba/SSM and hybrid architectures at single-base resolution, used for questions such as
+                        identifying the role of a DNA sequence in hormone synthesis. Post-training goes beyond masked
+                        language modelling — functional supervision, regulatory atlases, breeding-relevant readouts —
+                        with evaluation suites meant to be meaningful to breeders rather than to leaderboards.
+                        The stack itself is agentic: Claude and Gemma orchestrate training runs and the deployment of
+                        an LLM augmented with bioinformatics tools.
                     </p>
                 </div>
+
                 <div class="timeline-item">
-                    <div class="timeline-date">2025 — Present</div>
-                    <div class="timeline-title">Independent Research</div>
-                    <div class="timeline-company">Concilium — Multi-Agent LLM Systems</div>
+                    <div class="timeline-date">2025 — Present <span class="step-tag">· ongoing</span></div>
+                    <div class="timeline-title">Independent Research — Multi-Agent Coordination</div>
+                    <div class="timeline-company">Dotomics · Concilium</div>
                     <p class="timeline-description">
-                        Multi-agent LLM systems for long-horizon tasks that coordinate via democratic voting and hormonal-style feedback
-                        signalling. Documented an open-loop coordination failure — signals emitted but no longer feeding back into shared state.
-                        <!-- [TODO: link to public repo/writeup — URL to be provided] -->
-                        <a href="#" class="timeline-link" data-todo="concilium-url">[TODO: add repo/writeup link]</a>
+                        Coordination between LLM agents inspired by hormonal mechanisms, designed explicitly with
+                        alignment in mind: long-horizon tasks, democratic voting, feedback signalling as a shared
+                        control channel. Documented an open-loop coordination failure — signals emitted but no longer
+                        feeding back into shared state — which is the kind of silent degradation a multi-agent system
+                        has to be built to notice.
+                        <!-- TODO: add public repo / write-up link for Concilium when there is one -->
                     </p>
                 </div>
+
                 <div class="timeline-item">
-                    <div class="timeline-date">Sep 2025 — Feb 2026</div>
+                    <div class="timeline-date">Sep 2025 — Feb 2026 <span class="step-tag">· step 6</span></div>
                     <div class="timeline-title">AI Research Scientist — Medical Speech Analysis</div>
                     <div class="timeline-company">e-sensia — Paris</div>
                     <p class="timeline-description">
-                        Developed multimodal speech systems for emergency triage, combining fine-tuned audio models
-                        (Whisper, Wav2Vec2, EnCodec) with raw signal processing. Led the ESYNAPSE grant — a France 2030
-                        "Pionniers de l'IA" laureate worth up to €10M — and collaborated with clinical partners to validate
-                        models on real-world emergency medical data.
+                        Pathology detection from vocal biomarkers for emergency triage: a life-critical variant of the
+                        same problem. Fine-tuned audio models (Whisper, Wav2Vec2, EnCodec) alongside raw signal
+                        processing, fused into text, acoustic and multimodal risk scores under latency constraints —
+                        diarization, transcription, information validation, spoken response, with patient history in the
+                        loop. Led the ESYNAPSE grant, a France 2030 "Pionniers de l'IA" laureate worth up to €10M, and
+                        worked with clinical partners to validate models on real emergency medical data.
                     </p>
                 </div>
+
                 <div class="timeline-item">
-                    <div class="timeline-date">Apr 2022 — Aug 2025</div>
-                    <div class="timeline-title">Multimodal ML Expert</div>
+                    <div class="timeline-date">Apr 2022 — Aug 2025 <span class="step-tag">· step 5</span></div>
+                    <div class="timeline-title">Multimodal ML Expert — Social Robotics</div>
                     <div class="timeline-company">Enchanted Tools — Paris</div>
                     <p class="timeline-description">
-                        Built ML systems for the Mirokai social robot, integrating VLMs, LLMs, and speech models for natural
-                        human-robot interaction. Developed agentic pipelines with safety constraints and worked alongside a team
-                        of ML engineers.
+                        Perception → reasoning → action, in real time, under human-robot safety constraints for the
+                        Mirokai robot. Here interpretability stops being an abstract topic and becomes a deployment
+                        constraint.
                     </p>
+
+                    <figure class="figure">
+                        <img src="assets/media/mirokai.png" loading="lazy" width="666" height="375"
+                             alt="Two Mirokai robots: a humanoid upper body on a rolling ball base, one pushing a cart and one carrying a tray.">
+                        <figcaption>Mirokai — an emotional service robot with an interactive head, opposable thumbs and a rolling-globe base.</figcaption>
+                    </figure>
+
+                    <p class="timeline-description">
+                        <strong>Making a small model speak Mirokaï.</strong> The robot needs an LLM to track the history
+                        of an exchange, trigger the right tools and stay inside its narrative backstory (its "Lore") —
+                        but embedded hardware makes inference on a large model impractical. I generated synthetic
+                        dialogues with a larger model, cleaned the dataset of hallucinations and other errors, and used
+                        it for PEFT-LoRA fine-tuning of Llama-3.2-1B: a teacher-student route to large-model behaviour
+                        at an embeddable size.
+                    </p>
+
+                    <p class="timeline-description">
+                        <strong>Generating the data you cannot collect.</strong> A parameterised MetaHuman dataset with
+                        emotion, intensity, gender, ethnicity, environment, distance, viewing angle and robot size as
+                        controlled axes. Variations that are impossible to balance in real collection become dimensions
+                        you can sweep.
+                    </p>
+
+                    <figure class="figure">
+                        <img src="assets/media/metahuman-dataset.jpg" loading="lazy" width="1600" height="833"
+                             alt="Synthetic MetaHuman dataset: graded surprise and anger intensity ramps, the same character rendered across four environments, and an adult-size versus child-size viewpoint comparison.">
+                        <figcaption>Parameterised MetaHuman dataset — emotion intensity ramps, environment variation, and the same expression seen from adult versus child robot height.</figcaption>
+                    </figure>
+
+                    <p class="timeline-description">
+                        <strong>Then using it to anticipate deployment bias.</strong> Emotion recognition collapses when
+                        the robot is small — the same model that reaches 0.86 accuracy at adult size drops to 0.04 at
+                        baby size, a factor of twenty — and the predicted score drifts with age, gender and ethnicity.
+                    </p>
+
+                    <div class="callout">
+                        The point is <strong>when</strong> this was measured: before deployment, not after. A synthetic
+                        dataset you control is the cheapest way to find out that your perception stack has a blind spot
+                        at the exact height a child would look up from.
+                    </div>
+
+                    <figure class="figure">
+                        <img src="assets/media/deployment-bias.png" loading="lazy" width="1800" height="903"
+                             alt="Four panels. Two heatmaps of emotion recognition accuracy by robot size against distance and yaw angle, ranging from 0.038 at baby size to 0.95 at adult size. Two boxplots of predicted emotion score by age and gender, and by race and gender, both showing systematic drift.">
+                        <figcaption>Accuracy by robot size × distance and × viewing angle (top); predicted emotion score by age, gender and ethnicity (bottom). Measured on the synthetic dataset, pre-deployment.</figcaption>
+                    </figure>
                 </div>
+
                 <div class="timeline-item">
-                    <div class="timeline-date">2021 — 2022</div>
-                    <div class="timeline-title">Postdoctoral Research Scientist</div>
+                    <div class="timeline-date">2021 — 2022 <span class="step-tag">· step 4</span></div>
+                    <div class="timeline-title">Postdoctoral Research Scientist — Human-Agent Rapport</div>
                     <div class="timeline-company">Inria COML, Justine Cassell's team — Paris</div>
                     <p class="timeline-description">
-                        Developed interpretable deep learning models to predict rapport in human interactions from multimodal cues. 
-                        Built reusable toolkit for multimodal feature extraction and analysis.
+                        Modelling rapport in conversational human-agent interaction — the closest thing to pure HCI in
+                        my career, and the direct continuation of the HHAI 2022 paper in the
+                        <a href="#deepdive" class="timeline-link">deep dive below</a>. Interpreted dyadic models
+                        (LSTM/GRU with attention), moving from estimating rapport to generating behaviour that builds it,
+                        validated through perceptual experiments with humans. The question underneath: how does an
+                        agent's behaviour shape its user's?
                     </p>
                 </div>
+
                 <div class="timeline-item">
-                    <div class="timeline-date">2018 — 2021</div>
-                    <div class="timeline-title">Research Scientist</div>
+                    <div class="timeline-date">2018 — 2021 <span class="step-tag">· step 3</span></div>
+                    <div class="timeline-title">Research Scientist — Interpretability in Healthcare</div>
                     <div class="timeline-company">Semeia — Paris</div>
                     <p class="timeline-description">
-                        Built predictive models on French National Health Data. Improved medication adherence prediction from 60% to 90%. 
-                        Implemented SHAP/LIME for clinical interpretability. Published at NeurIPS and MICCAI.
+                        Predicting medication non-adherence from SNIIRAM reimbursement records on French National Health
+                        Data, taking prediction accuracy from 60% to 90%. SHAP and LIME were not a presentation layer
+                        here — they carried real clinical decisions, which is a different bar for an explanation.
+                        Published at NeurIPS ML4H and MICCAI.
                     </p>
                 </div>
+
                 <div class="timeline-item">
-                    <div class="timeline-date">2014 — 2018</div>
-                    <div class="timeline-title">PhD Researcher</div>
-                    <div class="timeline-company">Sorbonne University / ISIR / Telecom ParisTech</div>
+                    <div class="timeline-date">2014 — 2018 <span class="step-tag">· steps 1–2</span></div>
+                    <div class="timeline-title">PhD — Multimodal Social Signals</div>
+                    <div class="timeline-company">Sorbonne Université / ISIR / Télécom ParisTech</div>
                     <p class="timeline-description">
-                        Thesis on multimodal social signal analysis for affective virtual agents. Visiting scholar at USC ICT. 
-                        Developed computational frameworks for extracting and recognizing social behaviors.
+                        Recognising social signals for affective virtual agents, with no black box anywhere in the
+                        pipeline. Signal extraction (action units, prosody, head motion) feeding TITARL temporal
+                        association rules, then a discrimination metric to isolate the rules specific to one
+                        interpersonal attitude. Two generation strategies — cloning a speaker's signals, or applying the
+                        learned rules — both evaluated with users. Five publications (ICMI, IVA, WACAI, RIA, LREC) and a
+                        visiting period at USC ICT.
                     </p>
+
+                    <figure class="figure">
+                        <video src="assets/media/potus-corpus.mp4" poster="assets/media/potus-corpus.png"
+                               autoplay muted loop playsinline preload="metadata"
+                               aria-label="Side-by-side animation: a recorded speaker's head movements and facial expressions reproduced on a virtual agent."></video>
+                        <figcaption>Cloning a speaker's social signals onto a virtual agent, from the POTUS corpus of weekly presidential addresses (LREC 2020).</figcaption>
+                    </figure>
+
+                    <figure class="figure">
+                        <img src="assets/media/smart-pipeline.png" loading="lazy" width="1600" height="833"
+                             alt="Two-part diagram of the SMART pipeline: study corpus to signal extraction to simple rule computation to discrimination between common and specific rules; below, the temporal association rule mining loop of rule creation, division and refinement."
+                             style="background:#0a0a0b">
+                        <figcaption>The SMART pipeline (top) and the TITARL rule-mining loop (bottom) — original thesis figures, labelled in French.</figcaption>
+                    </figure>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Research Section -->
-    <section id="research">
+    <!-- 3. Through-line -->
+    <section id="thread">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Research Interests</div>
-                <h2 class="section-title">What I work on</h2>
+                <div class="section-label">The through-line</div>
+                <h2 class="section-title">Three threads running through all of it</h2>
             </div>
+
             <div class="research-grid">
                 <div class="research-card">
-                    <div class="research-icon">🧠</div>
-                    <h3>Affective Computing</h3>
-                    <p>Understanding and modeling human emotions, social signals, and interpersonal dynamics through computational methods.</p>
+                    <div class="research-icon">⚖️</div>
+                    <h3>AI Safety</h3>
+                    <p>
+                        Risk-prevention models where being wrong costs a life (Semeia, e-sensia). Alignment in social
+                        robotics and deployment bias anticipated before deployment rather than discovered after
+                        (Enchanted Tools). Multi-agent coordination designed around alignment from the start (Concilium).
+                    </p>
                 </div>
                 <div class="research-card">
                     <div class="research-icon">🔍</div>
-                    <h3>AI Interpretability</h3>
-                    <p>Making ML models transparent and explainable, from SHAP/LIME applications in healthcare to mechanistic understanding of neural networks.</p>
+                    <h3>Explainability</h3>
+                    <p>
+                        SHAP and LIME driving clinical decisions (Semeia), interpretable temporal rules instead of a
+                        black box (PhD), and interpretability as a hard deployment constraint on embedded robots
+                        (Enchanted Tools). An explanation is only worth something if it changes what you do next.
+                    </p>
                 </div>
                 <div class="research-card">
-                    <div class="research-icon">🎯</div>
-                    <h3>Multimodal Learning</h3>
-                    <p>Integrating vision, speech, and language understanding for robust human-AI interaction in embodied systems.</p>
-                </div>
-                <div class="research-card">
-                    <div class="research-icon">🤖</div>
-                    <h3>Social Robotics</h3>
-                    <p>Building AI systems that interact safely and naturally with humans, with appropriate social behaviors and safety constraints.</p>
-                </div>
-                <div class="research-card">
-                    <div class="research-icon">⚖️</div>
-                    <h3>AI Alignment</h3>
-                    <p>Applying insights from human behavior modeling to build AI systems that remain aligned with human values and intentions.</p>
-                </div>
-                <div class="research-card">
-                    <div class="research-icon">🏥</div>
-                    <h3>Healthcare ML</h3>
-                    <p>Predictive models for patient behavior, treatment adherence, and care pathways with clinical interpretability.</p>
+                    <div class="research-icon">🧠</div>
+                    <h3>Human-AI Interaction</h3>
+                    <p>
+                        Rapport in human-agent interaction (Inria, HHAI 2022) and how an agent's behaviour shapes its
+                        user's — measured, then fed back into how the agent generates behaviour in the first place.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects & Demos Section -->
-    <section id="projects">
+    <!-- 4. Deep dive -->
+    <section id="deepdive">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Projects &amp; Demos</div>
-                <h2 class="section-title">Systems in motion</h2>
+                <div class="section-label">Deep dive</div>
+                <h2 class="section-title">Estimating rapport in videoconference tutoring</h2>
             </div>
-            <div class="projects-grid">
 
-                <!-- Mirokai -->
-                <article class="project-card">
-                    <div class="project-media">
-                        <video class="lazy-media" controls preload="metadata" playsinline
-                               style="display:none"
-                               aria-label="Mirokai social robot in interaction"
-                               data-src="assets/media/mirokai-demo.mp4">
-                            <!-- [TODO: add captions] <track kind="captions" srclang="en" label="English" src="assets/media/mirokai-demo.vtt"> -->
-                        </video>
-                        <div class="media-placeholder">
-                            <div class="ph-icon">🎬</div>
-                            <div class="ph-file">assets/media/mirokai-demo.mp4</div>
-                            <div class="ph-note">Drop the file in to replace this placeholder</div>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <h3>Mirokai — Social Robot</h3>
-                        <div class="project-venue">Enchanted Tools</div>
-                        <p class="project-caption">
-                            <span data-todo="mirokai-caption">[TODO: caption]</span>
-                            Mirokai social robot in interaction.
-                        </p>
-                    </div>
-                </article>
+            <p class="lead">
+                <a href="https://www.hhai-conference.org/wp-content/uploads/2022/08/hhai-2021_paper_48.pdf"
+                   class="timeline-link" target="_blank" rel="noopener">Grimberg, Janssoone, Clavel &amp; Cassell,
+                   HHAI 2022</a> — ENS Paris · Carnegie Mellon &amp; Inria · Télécom Paris. Teenagers tutor each other
+                in algebra over Skype, two sessions of about thirty minutes per dyad. The corpus comes from
+                Madaio et al. (2017); we did not collect it, we re-exploited and re-annotated it.
+            </p>
 
-                <!-- 3D Gesture Guidance -->
-                <article class="project-card">
-                    <div class="project-media">
-                        <video class="lazy-media" controls preload="metadata" playsinline
-                               style="display:none"
-                               aria-label="3D gesture guidance AR interface demo"
-                               data-src="assets/media/gesture-guidance.mp4">
-                            <!-- [TODO: add captions] <track kind="captions" srclang="en" label="English" src="assets/media/gesture-guidance.vtt"> -->
-                        </video>
-                        <div class="media-placeholder">
-                            <div class="ph-icon">🎬</div>
-                            <div class="ph-file">assets/media/gesture-guidance.mp4</div>
-                            <div class="ph-note">Drop the file in to replace this placeholder</div>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <h3>3D Gesture Guidance <span class="pub-badge">MOST CITED</span></h3>
-                        <div class="project-venue">Delamare et al., AVI 2016</div>
-                        <p class="project-caption">
-                            <span data-todo="gesture-caption">[TODO: caption]</span>
-                            3D gesture guidance AR interface.
-                        </p>
-                    </div>
-                </article>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">14</div>
+                    <div class="metric-label">usable dyads</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">2,209</div>
+                    <div class="metric-label">30 s slices with a valid rapport annotation</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">1,588</div>
+                    <div class="metric-label">slices where every feature is extractable</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">α = 0.61</div>
+                    <div class="metric-label">Krippendorff inter-rater agreement</div>
+                </div>
+            </div>
 
-                <!-- Biopsym -->
-                <article class="project-card">
-                    <div class="project-media">
-                        <video class="lazy-media" controls preload="metadata" playsinline
-                               style="display:none"
-                               aria-label="Biopsym ultrasound-guided prostate biopsy training simulator"
-                               data-src="assets/media/biopsym-demo.mp4">
-                            <!-- [TODO: add captions] <track kind="captions" srclang="en" label="English" src="assets/media/biopsym-demo.vtt"> -->
-                        </video>
-                        <div class="media-placeholder">
-                            <div class="ph-icon">🎬</div>
-                            <div class="ph-file">assets/media/biopsym-demo.mp4</div>
-                            <div class="ph-note">Drop the file in to replace this placeholder</div>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <h3>Biopsym — Biopsy Simulator</h3>
-                        <div class="project-venue">MMVR 2011</div>
-                        <p class="project-caption">
-                            <span data-todo="biopsym-caption">[TODO: caption]</span>
-                            Ultrasound-guided prostate biopsy training simulator.
-                        </p>
-                    </div>
-                </article>
+            <div class="sub-heading">Annotating a subjective perception</div>
+            <p class="lead">
+                The target does not exist in the signal; it has to be constructed. Four independent judges recruited on
+                Amazon Mechanical Turk rated every 30-second slice on a 1–7 Likert scale. The most distant rating was
+                discarded and a bias correction applied to the remaining three.
+            </p>
 
-                <!-- POTUS Corpus (video OR image) -->
-                <article class="project-card">
-                    <div class="project-media">
-                        <video class="lazy-media" controls preload="metadata" playsinline
-                               style="display:none"
-                               aria-label="POTUS Corpus: weekly presidential addresses for stance study"
-                               poster="assets/media/potus-corpus.png"
-                               data-src="assets/media/potus-corpus.mp4"
-                               data-fallback-img="assets/media/potus-corpus.png">
-                            <!-- [TODO: add captions] <track kind="captions" srclang="en" label="English" src="assets/media/potus-corpus.vtt"> -->
-                        </video>
-                        <div class="media-placeholder">
-                            <div class="ph-icon">🖼️</div>
-                            <div class="ph-file">assets/media/potus-corpus.mp4 or .png</div>
-                            <div class="ph-note">Drop either file in to replace this placeholder</div>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <h3>The POTUS Corpus</h3>
-                        <div class="project-venue">LREC 2020</div>
-                        <p class="project-caption">
-                            <span data-todo="potus-caption">[TODO: caption]</span>
-                            Weekly presidential addresses for stance study.
-                        </p>
-                    </div>
-                </article>
+            <div class="callout">
+                α = 0.61 is moderate agreement. In other words, <strong>even among humans, rapport is not a
+                consensus</strong> — which is an implicit performance ceiling for any model trained on these labels,
+                and a good reason to distrust MAE comparisons at the third decimal.
+            </div>
 
+            <div class="sub-heading">Features and protocol</div>
+            <p class="lead">
+                High-level features from OpenFace (non-verbal) and openSMILE (para-verbal), in two families.
+                <strong>Individual</strong> features describe one participant — SpeechRate, F0, Loudness, VoiceProb,
+                PosFace, GazeChange, HeadRotation, each as mean, standard deviation, skew and max.
+                <strong>Relative</strong> features describe the two participants against each other — RelSpeechRate,
+                RelF0, RelLoudness, RelPosFace. Notation: t = tutee, T = tutor.
+            </p>
+            <p class="lead">
+                The split is by dyad, not by slice, so no participant leaks between train and test: 10 dyads / 1,546
+                slices for training, 2 dyads / 358 for validation, 2 dyads / 305 for test. Hyperparameters were tuned on
+                validation, then evaluated once on test — no going back and forth.
+            </p>
+
+            <div class="sub-heading">Results — 5 models × 3 feature sets</div>
+            <div class="table-wrap">
+                <table class="results">
+                    <caption class="metric-label" style="caption-side:bottom;text-align:left;padding-top:.75rem">
+                        MAE on the test set, lower is better. Rapport is annotated on a 1–7 scale.
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Model</th>
+                            <th scope="col">Individual</th>
+                            <th scope="col">Relative</th>
+                            <th scope="col">All</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Support Vector Regressor</td><td>1.092</td><td>1.187</td><td>1.232</td></tr>
+                        <tr><td>Random Forest Regressor</td><td>1.078</td><td>1.220</td><td class="best">1.074</td></tr>
+                        <tr><td>Decision Tree Regressor</td><td>1.155</td><td>1.256</td><td>1.155</td></tr>
+                        <tr><td>Gradient Boosting Regressor</td><td class="best">1.072</td><td>1.126</td><td>1.086</td></tr>
+                        <tr><td>MLP Regressor</td><td>1.227</td><td>1.217</td><td>1.275</td></tr>
+                        <tr class="baseline"><td>Dummy regressor (predicts mean rapport)</td><td colspan="3">1.293</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="lead">
+                Every model beats the baseline, but not by much. Gradient Boosting on individual features (1.072) and
+                Random Forest on all features (1.074) are separated by a gap that means nothing.
+            </p>
+
+            <div class="sub-heading">What SHAP says</div>
+            <div class="figure fig-pair">
+                <figure class="figure" style="margin:0">
+                    <img src="assets/media/shap-individual.png" loading="lazy" width="923" height="939"
+                         alt="SHAP beeswarm plot for the model trained on individual features. tLoudnessStd and TLoudnessStd rank first and second, followed by TPosFaceMean and tPosFaceMean.">
+                    <figcaption>Individual features. Vocal intensity variability dominates for tutee and tutor alike: a monotone delivery drags the estimate down. Positive facial expression follows, with the tutor's effect more pronounced — consistent with the tutor driving the interaction.</figcaption>
+                </figure>
+                <figure class="figure" style="margin:0">
+                    <img src="assets/media/shap-all.png" loading="lazy" width="976" height="978"
+                         alt="SHAP beeswarm plot for the model trained on all features. RelF0Skew ranks third and RelPosFaceStd fifth, ahead of several individual features.">
+                    <figcaption>All features. The interesting result: RelF0Skew comes 3rd, ahead of TPosFaceMean, and RelPosFaceStd (5th) outranks tPosFaceMean. How the two voices and the two faces move relative to each other carries signal the isolated expressions do not.</figcaption>
+                </figure>
+            </div>
+            <p class="lead">
+                Individual features still hold most of the top ranks — synchrony counts without dominating. But it
+                counts enough that ignoring the dyad loses information.
+            </p>
+
+            <div class="sub-heading">Why this is useful</div>
+            <p class="lead">
+                This is where interpretability pays off, because a score alone does not tell you what to do.
+                "Rapport in this slice is 3.7" is measurable and not actionable. "Synchrony of positive expressions
+                raises rapport" is an instruction for an agent's behaviour-generation module: if synchrony on a feature
+                raises rapport, it can be built in as an objective. And nothing in the pipeline is specific to rapport —
+                the same chain applies to intimacy, trust, or any other annotatable conversational phenomenon.
+            </p>
+
+            <div class="sub-heading">Owned limitations</div>
+            <div class="limit-grid">
+                <div class="limit-card">
+                    <h4>Weak predictive power</h4>
+                    <p>1.072 against a 1.293 baseline on a 1–7 scale, with statistical power under 50%. Better than
+                       chance, not much better, and we never presented it otherwise.</p>
+                </div>
+                <div class="limit-card">
+                    <h4>A trade-off on missing data</h4>
+                    <p>Audio extraction fails on part of the slices. Excluding them would hurt performance on an already
+                       small set, so they were kept — at the cost of an imbalance between acoustic and visual features.</p>
+                </div>
+                <div class="limit-card">
+                    <h4>Moderate inter-rater agreement</h4>
+                    <p>α = 0.61 means the target itself is noisy. Comparing MAEs at the third decimal on these labels
+                       would be meaningless.</p>
+                </div>
+                <div class="limit-card">
+                    <h4>14 dyads, a single context</h4>
+                    <p>Algebra tutoring between teenagers over videoconference. Nothing guarantees the feature ranking
+                       holds anywhere else.</p>
+                </div>
+            </div>
+
+            <div class="sub-heading">What I would do differently today</div>
+            <div class="limit-grid">
+                <div class="limit-card">
+                    <h4>A larger, more diverse corpus</h4>
+                    <p>Several contexts and cultures, to test whether the feature ranking generalises at all.</p>
+                </div>
+                <div class="limit-card">
+                    <h4>Sequential models</h4>
+                    <p>Rapport builds over time; treating each 30-second slice in isolation denies that. This is exactly
+                       what the Inria postdoc went on to do.</p>
+                </div>
+                <div class="limit-card">
+                    <h4>A causal design</h4>
+                    <p>Manipulate an agent's expression and measure the effect, rather than observing correlations.</p>
+                </div>
+                <div class="limit-card">
+                    <h4>Natural-language explanations</h4>
+                    <p>Translate SHAP into instructions a designer can read, not scatter plots they have to interpret.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Publications Section -->
+    <!-- Publications -->
     <section id="publications">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Selected Publications</div>
+                <div class="section-label">Selected publications</div>
                 <h2 class="section-title">Research outputs</h2>
             </div>
+
+            <div class="stats-grid" style="margin-bottom:3rem">
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years in ML Research</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">~121</div>
+                    <div class="stat-label">Citations (Scholar)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">h-index</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Selected Publications</div>
+                </div>
+            </div>
+
             <div class="pub-list">
-                <!-- [TODO: add public URL for the AVI 2016 paper] -->
-                <div class="pub-item" data-pub="avi2016">
+                <!-- TODO: add public URL when available -->
+                <div class="pub-item">
                     <span class="pub-venue">AVI '16</span>
                     <div>
-                        <div class="pub-title">Designing 3D gesture guidance…<span class="pub-badge">MOST CITED</span></div>
+                        <div class="pub-title">Designing 3D gesture guidance: visual feedback and feedforward design options<span class="pub-badge">MOST CITED</span></div>
                         <div class="pub-authors">W. Delamare, T. Janssoone, C. Coutrix, L. Nigay</div>
-                        <a href="#" class="timeline-link" data-todo="avi2016-url">[TODO: add paper link]</a>
                     </div>
                 </div>
-                <!-- [TODO: add public URL for the ICMI 2023 paper] -->
-                <div class="pub-item" data-pub="icmi2023">
+                <!-- TODO: add public URL when available -->
+                <div class="pub-item">
                     <span class="pub-venue">ICMI '23</span>
                     <div>
                         <div class="pub-title">Automatic Detection of Gaze and Smile in Children's Video Calls</div>
                         <div class="pub-authors">O. Goumri, T. Janssoone, et al.</div>
-                        <a href="#" class="timeline-link" data-todo="icmi2023-url">[TODO: add paper link]</a>
                     </div>
                 </div>
                 <a href="https://www.hhai-conference.org/wp-content/uploads/2022/08/hhai-2021_paper_48.pdf" class="pub-item" target="_blank" rel="noopener">
@@ -1095,13 +1289,12 @@
                         <div class="pub-authors">G. Grimberg, T. Janssoone, C. Clavel, J. Cassell</div>
                     </div>
                 </a>
-                <!-- [TODO: add public URL for the POTUS Corpus LREC 2020 paper] -->
-                <div class="pub-item" data-pub="lrec2020">
+                <!-- TODO: add public URL when available -->
+                <div class="pub-item">
                     <span class="pub-venue">LREC '20</span>
                     <div>
-                        <div class="pub-title">The POTUS Corpus…</div>
+                        <div class="pub-title">The POTUS Corpus, a Database of Weekly Addresses for the Study of Stance in Politics and Virtual Agents</div>
                         <div class="pub-authors">T. Janssoone, et al.</div>
-                        <a href="#" class="timeline-link" data-todo="lrec2020-url">[TODO: add paper link]</a>
                     </div>
                 </div>
                 <a href="https://arxiv.org/pdf/1811.12234" class="pub-item" target="_blank" rel="noopener">
@@ -1126,22 +1319,23 @@
                     </div>
                 </a>
             </div>
+
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="https://scholar.google.com/citations?user=qkOKEfMAAAAJ&hl" class="btn btn-secondary" target="_blank">
+                <a href="https://scholar.google.com/citations?user=qkOKEfMAAAAJ&hl" class="btn btn-secondary" target="_blank" rel="noopener">
                     View all on Google Scholar →
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-label">Get in touch</div>
             <h2 class="section-title">Let's build something meaningful</h2>
             <p class="contact-description">
-                Interested in AI safety, human-AI interaction, or interpretability research? 
-                I'm always open to conversations about research collaborations or opportunities.
+                Interested in AI safety, interpretability, or human-AI interaction? I'm always open to conversations
+                about research collaborations or opportunities.
             </p>
             <div class="contact-links">
                 <a href="mailto:thomas.janssoone@gmail.com" class="contact-link">
@@ -1156,14 +1350,6 @@
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
                     LinkedIn
-                </a>
-                <a href="https://thomasjanssoone.github.io" class="contact-link" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="2" y1="12" x2="22" y2="12"/>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                    </svg>
-                    Portfolio
                 </a>
                 <a href="https://github.com/ThomasJanssoone" class="contact-link" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -1193,71 +1379,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>© 2026 Thomas Janssoone — Built with curiosity and caffeine</p>
         </div>
     </footer>
-
-    <!-- Lazy-load project media with graceful fallback to styled placeholder -->
-    <script>
-        (function () {
-            const media = document.querySelectorAll('.lazy-media');
-
-            function showPlaceholder(el) {
-                el.style.display = 'none';
-                // placeholder stays visible (it is the default state)
-            }
-
-            function reveal(el) {
-                const ph = el.closest('.project-media').querySelector('.media-placeholder');
-                el.style.display = '';
-                if (ph) ph.style.display = 'none';
-            }
-
-            function tryFallbackImage(videoEl) {
-                const src = videoEl.getAttribute('data-fallback-img');
-                if (!src) { showPlaceholder(videoEl); return; }
-                const img = document.createElement('img');
-                img.alt = videoEl.getAttribute('aria-label') || '';
-                img.style.display = 'none';
-                img.addEventListener('load', function () { reveal(img); }, { once: true });
-                img.addEventListener('error', function () { img.remove(); }, { once: true });
-                videoEl.closest('.project-media').appendChild(img);
-                videoEl.style.display = 'none';
-                img.src = src;
-            }
-
-            function load(el) {
-                const src = el.getAttribute('data-src');
-                if (!src) return;
-                if (el.tagName === 'VIDEO') {
-                    el.addEventListener('loadeddata', function () { reveal(el); }, { once: true });
-                    el.addEventListener('error', function () { tryFallbackImage(el); }, { once: true });
-                    el.src = src;
-                    el.load();
-                } else {
-                    el.addEventListener('load', function () { reveal(el); }, { once: true });
-                    el.addEventListener('error', function () { showPlaceholder(el); }, { once: true });
-                    el.src = src;
-                }
-            }
-
-            if ('IntersectionObserver' in window) {
-                const io = new IntersectionObserver(function (entries, obs) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            load(entry.target);
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                }, { rootMargin: '200px' });
-                media.forEach(function (el) { io.observe(el); });
-            } else {
-                media.forEach(load);
-            }
-        })();
-    </script>
 </body>
 </html>
