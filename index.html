@@ -1017,6 +1017,13 @@
                         loop. Led the ESYNAPSE grant, a France 2030 "Pionniers de l'IA" laureate worth up to €10M, and
                         worked with clinical partners to validate models on real emergency medical data.
                     </p>
+
+                    <figure class="figure">
+                        <img src="assets/media/esensia-pipeline.svg" loading="lazy" width="1000" height="420"
+                             alt="Pipeline diagram: patient voice enters diarization, which feeds transcription and acoustic pathology detection; transcription feeds information validation and text-based pathology detection; the text and acoustic risk scores meet at multimodal pathology detection, which also receives patient record and history from a database lookup; information validation drives a spoken response back to the patient."
+                             style="background:#101013">
+                        <figcaption>The triage pipeline: two independent readings of the same call — what was said and how it sounded — fused into one risk score, with the patient record joining at the fusion step. Redrawn from the original architecture diagram.</figcaption>
+                    </figure>
                 </div>
 
                 <div class="timeline-item">
@@ -1088,6 +1095,12 @@
                         validated through perceptual experiments with humans. The question underneath: how does an
                         agent's behaviour shape its user's?
                     </p>
+
+                    <figure class="figure">
+                        <img src="assets/media/rapport-architecture.png" loading="lazy" width="1800" height="488"
+                             alt="Architecture diagram: databases of dyadic interactions and real-time interaction feed video and sound extraction, then a feature extractor using openFace, openSmile and ASR; a feature analyzer holds a conversational strategies classifier, a rapport estimator and an NLU module; a dyadic model with task manager and social reasoner drives generation modules — NLG, Beat, Smartbody/Greta and text-to-speech — rendering an animated agent; model evaluation and model explainer modules hang off the analyser.">
+                        <figcaption>The full loop the rapport estimator sits inside: extraction, analysis, a dyadic model, then generation and rendering — with the explainer wired in rather than bolted on afterwards.</figcaption>
+                    </figure>
                 </div>
 
                 <div class="timeline-item">
@@ -1100,6 +1113,12 @@
                         here — they carried real clinical decisions, which is a different bar for an explanation.
                         Published at NeurIPS ML4H and MICCAI.
                     </p>
+
+                    <figure class="figure">
+                        <img src="assets/media/semeia-explanation.png" loading="lazy" width="1600" height="649"
+                             alt="Clinical interface in French: a banner states the patient has a medium initial risk of stopping treatment at three months and suggests closer follow-up; below, a force plot on a treatment-drop-out risk axis from 45 to 60 percent shows previous chemotherapy and age pushing the score up and long-term-condition seniority and metastatic status pulling it down, landing at 49 percent against a 53 percent average.">
+                        <figcaption>What the clinician actually saw: not a score but the reasons for it — each patient feature shown pushing the drop-out risk up or down from the population average. French, as deployed.</figcaption>
+                    </figure>
                 </div>
 
                 <div class="timeline-item">

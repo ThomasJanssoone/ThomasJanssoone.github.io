@@ -14,6 +14,9 @@ Figures used by `index.html`.
 | `smart-pipeline.png`     | PhD                  | 7     |
 | `shap-individual.png`    | Deep dive            | 24    |
 | `shap-all.png`           | Deep dive            | 25    |
+| `semeia-explanation.png` | Semeia               | 8     |
+| `rapport-architecture.png` | Inria COML         | 9     |
+| `esensia-pipeline.svg`   | e-sensia             | 14    |
 
 ## From published papers
 
@@ -29,4 +32,11 @@ Notes:
 - Nothing is displayed above its native resolution; `.fig-narrow` (620px),
   `.fig-mid` (666px) and `.fig-small` (480px) cap the smaller sources.
 - Chart figures are rendered on white, so `.figure img` has a white background.
-- `smart-pipeline.png` is labelled in French (original thesis figure).
+- `smart-pipeline.png` and `semeia-explanation.png` are in French (a thesis
+  figure and a deployed clinical interface respectively).
+- `esensia-pipeline.svg` is redrawn, not extracted: slide 14 is built from
+  PowerPoint shapes rather than an image. Node labels and the edge list come
+  from the slide's own geometry; the layout is new. It carries its own dark
+  background, so its `.figure img` background is overridden inline.
+- Not used, by decision: the BOTANIC-1 model card and the agentic BSA pipeline
+  (slides 15-16), as unreleased Living Models material.

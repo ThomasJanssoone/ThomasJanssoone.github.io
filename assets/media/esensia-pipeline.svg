@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" width="1000" height="420" role="img"
+     aria-label="Pipeline diagram. Patient voice enters diarization, which passes patient voice to transcription and to acoustic pathology detection. Transcription passes patient text to information validation and to text-based pathology detection. Text-based and acoustic detection both feed multimodal pathology detection, which also receives patient record and history from a database lookup. Spoken response returns chatbot voice, and passes chatbot text to information validation.">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8b8b95"/>
+    </marker>
+    <style>
+      .b  { fill:#18181b; stroke:#3f3f46; stroke-width:1.3; }
+      .bd { fill:#1b2740; stroke:#3f4f6e; stroke-width:1.3; }
+      .bf { fill:#1b2740; stroke:#3b82f6; stroke-width:1.6; }
+      .t  { fill:#fafafa; font:12px system-ui,-apple-system,"Segoe UI",sans-serif; text-anchor:middle; }
+      .l  { fill:#8b8b95; font:10px ui-monospace,SFMono-Regular,Menlo,monospace; text-anchor:middle; }
+      .a  { stroke:#8b8b95; stroke-width:1.5; fill:none; marker-end:url(#ar); }
+    </style>
+  </defs>
+
+  <rect width="1000" height="420" rx="12" fill="#101013"/>
+
+  <!-- conversational loop -->
+  <rect class="b" x="620" y="30" width="150" height="46" rx="8"/>
+  <text class="t" x="695" y="58">spoken response</text>
+
+  <!-- transcription chain -->
+  <rect class="b" x="140" y="150" width="150" height="46" rx="8"/>
+  <text class="t" x="215" y="178">diarization</text>
+  <rect class="b" x="350" y="150" width="150" height="46" rx="8"/>
+  <text class="t" x="425" y="178">transcription</text>
+  <rect class="b" x="620" y="150" width="150" height="46" rx="8"/>
+  <text class="t" x="695" y="172">information</text>
+  <text class="t" x="695" y="187">validation</text>
+
+  <!-- detection row -->
+  <rect class="bd" x="140" y="290" width="150" height="46" rx="8"/>
+  <text class="t" x="215" y="312">acoustic</text>
+  <text class="t" x="215" y="327">pathology detection</text>
+  <rect class="bd" x="350" y="290" width="150" height="46" rx="8"/>
+  <text class="t" x="425" y="312">text-based</text>
+  <text class="t" x="425" y="327">pathology detection</text>
+  <rect class="bf" x="620" y="290" width="150" height="46" rx="8"/>
+  <text class="t" x="695" y="312">multimodal</text>
+  <text class="t" x="695" y="327">pathology detection</text>
+  <rect class="b" x="850" y="290" width="110" height="46" rx="8"/>
+  <text class="t" x="905" y="318">DB lookup</text>
+
+  <!-- arrows -->
+  <path class="a" d="M40 173 H136"/>
+  <text class="l" x="86" y="163">patient voice</text>
+
+  <path class="a" d="M290 173 H346"/>
+  <text class="l" x="318" y="163">voice</text>
+
+  <path class="a" d="M500 173 H616"/>
+  <text class="l" x="558" y="163">patient text</text>
+
+  <path class="a" d="M215 196 V286"/>
+  <text class="l" x="215" y="245">patient voice</text>
+
+  <path class="a" d="M425 196 V286"/>
+  <text class="l" x="425" y="245">patient text</text>
+
+  <path class="a" d="M500 313 H616"/>
+  <text class="l" x="558" y="303">text risk score</text>
+
+  <path class="a" d="M215 336 V380 H660 V340"/>
+  <text class="l" x="420" y="396">acoustic risk score</text>
+
+  <path class="a" d="M695 196 V286"/>
+  <text class="l" x="762" y="245">validated text</text>
+
+  <path class="a" d="M850 313 H774"/>
+  <text class="l" x="812" y="357">patient record</text>
+  <text class="l" x="812" y="370">· history</text>
+
+  <path class="a" d="M695 76 V146"/>
+  <text class="l" x="740" y="115">chatbot text</text>
+
+  <path class="a" d="M616 53 H540"/>
+  <text class="l" x="578" y="43">chatbot voice</text>
+
+  <text class="l" x="695" y="406" style="fill:#3b82f6">multimodal risk score</text>
+</svg>
