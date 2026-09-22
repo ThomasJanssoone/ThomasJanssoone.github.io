@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Superseded versions of this site. Crawling is allowed so the noindex
+# in each file is actually seen; they should not appear in results.
+Disallow:
+
+Sitemap: https://thomasjanssoone.github.io/sitemap.xml

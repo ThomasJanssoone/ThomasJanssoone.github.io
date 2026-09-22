@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thomas Janssoone — Extracting reliable signals from hidden states</title>
     <meta name="description" content="Research scientist working on interpretable multimodal ML — affective computing, social robotics, healthcare risk, plant genomic foundation models, and multi-agent coordination.">
+    <link rel="canonical" href="https://thomasjanssoone.github.io/">
+
+    <!-- Icons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#0a0a0b">
+
+    <!-- Share previews -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://thomasjanssoone.github.io/">
+    <meta property="og:title" content="Thomas Janssoone — Extracting reliable signals from hidden states">
+    <meta property="og:description" content="Ten years asking one question across affect, patient risk, robot behaviour, genomes and multi-agent coordination — and making the resulting models trustworthy enough to deploy.">
+    <meta property="og:image" content="https://thomasjanssoone.github.io/assets/media/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Thomas Janssoone — Extracting a reliable signal from hidden states">
+    <meta property="profile:first_name" content="Thomas">
+    <meta property="profile:last_name" content="Janssoone">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Thomas Janssoone — Extracting reliable signals from hidden states">
+    <meta name="twitter:description" content="Ten years asking one question across affect, patient risk, robot behaviour, genomes and multi-agent coordination.">
+    <meta name="twitter:image" content="https://thomasjanssoone.github.io/assets/media/og-image.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +40,7 @@
             --bg-card: #18181b;
             --text-primary: #fafafa;
             --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
+            --text-muted: #8b8b95;
             --accent: #3b82f6;
             --accent-glow: rgba(59, 130, 246, 0.15);
             --border: #27272a;
@@ -108,6 +130,25 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 2rem;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 1rem;
+            top: -100px;
+            z-index: 200;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--accent);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: top 0.15s ease;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
         }
 
         /* Navigation */
@@ -731,6 +772,7 @@
 
         .sub-heading {
             font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -772,12 +814,36 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.6rem;
+                padding: 0.9rem 1rem 0.7rem;
+            }
+
             .nav-links {
+                gap: 1.1rem;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 0.15rem;
+            }
+
+            .nav-links::-webkit-scrollbar {
                 display: none;
             }
 
+            .nav-links li {
+                flex: 0 0 auto;
+            }
+
+            .nav-links a {
+                font-size: 0.82rem;
+                white-space: nowrap;
+            }
+
             .hero {
-                padding: 6rem 0 3rem;
+                padding: 7.5rem 0 3rem;
             }
 
             .stats-grid {
@@ -787,6 +853,24 @@
             .fig-pair,
             .limit-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .orb {
+                animation: none;
             }
         }
 
@@ -803,6 +887,8 @@
     </style>
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
     <!-- Background orbs -->
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
@@ -820,6 +906,8 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
+
+    <main id="main">
 
     <!-- Hero -->
     <section class="hero">
@@ -1164,7 +1252,7 @@
                 </div>
             </div>
 
-            <div class="sub-heading">Annotating a subjective perception</div>
+            <h3 class="sub-heading">Annotating a subjective perception</h3>
             <p class="lead">
                 The target does not exist in the signal; it has to be constructed. Four independent judges recruited on
                 Amazon Mechanical Turk rated every 30-second slice on a 1–7 Likert scale. The most distant rating was
@@ -1177,7 +1265,7 @@
                 and a good reason to distrust MAE comparisons at the third decimal.
             </div>
 
-            <div class="sub-heading">Features and protocol</div>
+            <h3 class="sub-heading">Features and protocol</h3>
             <p class="lead">
                 High-level features from OpenFace (non-verbal) and openSMILE (para-verbal), in two families.
                 <strong>Individual</strong> features describe one participant — SpeechRate, F0, Loudness, VoiceProb,
@@ -1191,7 +1279,7 @@
                 validation, then evaluated once on test — no going back and forth.
             </p>
 
-            <div class="sub-heading">Results — 5 models × 3 feature sets</div>
+            <h3 class="sub-heading">Results — 5 models × 3 feature sets</h3>
             <div class="table-wrap">
                 <table class="results">
                     <caption class="metric-label" style="caption-side:bottom;text-align:left;padding-top:.75rem">
@@ -1220,7 +1308,7 @@
                 Random Forest on all features (1.074) are separated by a gap that means nothing.
             </p>
 
-            <div class="sub-heading">What SHAP says</div>
+            <h3 class="sub-heading">What SHAP says</h3>
             <div class="figure fig-pair">
                 <figure class="figure" style="margin:0">
                     <img src="assets/media/shap-individual.png" loading="lazy" width="923" height="939"
@@ -1238,7 +1326,7 @@
                 counts enough that ignoring the dyad loses information.
             </p>
 
-            <div class="sub-heading">Why this is useful</div>
+            <h3 class="sub-heading">Why this is useful</h3>
             <p class="lead">
                 This is where interpretability pays off, because a score alone does not tell you what to do.
                 "Rapport in this slice is 3.7" is measurable and not actionable. "Synchrony of positive expressions
@@ -1247,7 +1335,7 @@
                 the same chain applies to intimacy, trust, or any other annotatable conversational phenomenon.
             </p>
 
-            <div class="sub-heading">Owned limitations</div>
+            <h3 class="sub-heading">Owned limitations</h3>
             <div class="limit-grid">
                 <div class="limit-card">
                     <h4>Weak predictive power</h4>
@@ -1271,7 +1359,7 @@
                 </div>
             </div>
 
-            <div class="sub-heading">What I would do differently today</div>
+            <h3 class="sub-heading">What I would do differently today</h3>
             <div class="limit-grid">
                 <div class="limit-card">
                     <h4>A larger, more diverse corpus</h4>
@@ -1380,6 +1468,8 @@
                 <a href="https://scholar.google.com/citations?user=qkOKEfMAAAAJ&hl" class="btn btn-secondary" target="_blank" rel="noopener">
                     View all on Google Scholar →
                 </a>
+                <a href="Resume_Thomas_Janssoone_2022.pdf" class="btn btn-secondary">Résumé (PDF)</a>
+                <a href="resume-these.pdf" class="btn btn-secondary">PhD summary (PDF)</a>
             </div>
         </div>
     </section>
@@ -1434,6 +1524,19 @@
             </div>
         </div>
     </section>
+
+    <!-- CSS cannot stop an autoplaying video, so honour the OS setting here -->
+    <script>
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('video[autoplay]').forEach(function (v) {
+                v.removeAttribute('autoplay');
+                v.setAttribute('controls', '');
+                v.pause();
+            });
+        }
+    </script>
+
+    </main>
 
     <footer>
         <div class="container">
